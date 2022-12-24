@@ -29,14 +29,12 @@ let operate = function(operator,a,b) {
     }
 }
 
-
 let display = document.getElementById('display');
 let a = '';
 let operator = '';
 let b = '';
-let input = '';
 let solution = 0;
-
+let resetCalc = false;
 
 const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach((numberButton) => {
@@ -46,8 +44,7 @@ numberButtons.forEach((numberButton) => {
 function getA(e) {
     a += `${e.target.id}`;
     display.textContent = `${a}`;
-    input = `${a}`;
-
+    //resetCalc = false;
 }
 
 const operatorButtons = document.querySelectorAll('.operator');
@@ -56,9 +53,7 @@ operatorButtons.forEach((operatorButton) => {
 });
 
 function whichOperate(e) {
-    a = input;
     console.log(a);
-
     operator = e.target.id;
     console.log(operator);
 
@@ -71,6 +66,22 @@ function whichOperate(e) {
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', getB);
     });
+
+    if (b != '') {
+        numberButtons.forEach((numberButton) => {
+            numberButton.removeEventListener('click', getB);
+        });
+    }
+}
+
+function operateAgain(e) {
+    operator = e.target.id;
+    console.log(operator);
+    display.textContent = solution;
+    a = solution;
+    console.log(a);
+    b = '';
+    getB;
 }
 
 function getB(e) {
@@ -80,6 +91,7 @@ function getB(e) {
     display.textContent = `${b}`;
     solution = operate(operator,+a,+b);
     console.log(solution);
+    
 
     if (b != '') {
         operatorButtons.forEach((operatorButton) => {
@@ -90,32 +102,14 @@ function getB(e) {
     operatorButtons.forEach((operatorButton) => {
         operatorButton.addEventListener('click', operateAgain)
     });
-    
-    function operateAgain(e) {
-        operator = e.target.id;
-        console.log(operator);
-        display.textContent = solution;
-        a = solution;
-        console.log(a);
-        b = '';
-        getB;
-    
-    }    
-    
     /*
-    operator = '';
-    if (operator != '') {
-        a = solution;
-        b += `${e.target.id}`
-        display.textContent = `${b}`;
-        solution = operate(operator,+a,+b);
-        console.log(solution);
+    if (resetCalc = true) {
+        operatorButtons.forEach((operatorButton) => {
+            operatorButton.removeEventListener('click', operateAgain)
+        });
     }
     */
-    
 }
-
-
 
 const equals = document.getElementById('equals');
 equals.addEventListener('click', calculate);
@@ -128,16 +122,17 @@ function clearDisplay() {
     display.textContent = '';
 }
 
-/*
-const equals = document.getElementById('equals');
-equals.addEventListener('click', calculate);
+const clrButton = document.getElementById('clear');
+clrButton.addEventListener('click', allClear);
+function allClear() {
+    a = '';
+    operator = '';
+    b = '';
+    solution = 0;
+    clearDisplay();
+    //resetCalc = true
+    numberButtons.forEach((numberButton) => {
+        numberButton.addEventListener('click', getA);
+    });
 
-
-function calculate(e) {
-    b = display.textContent;
-    console.log(b);
-    let solution = operate(operator,+a,+b);
-    console.log(solution);
-    display.textContent = solution;
 }
-*/
