@@ -32,7 +32,6 @@ body {
 
 }
 
-
 #display {
     width: 232px;
     height: 50px;
@@ -41,7 +40,6 @@ body {
     color: #edf2f4;
     font-size: 40px;
     text-align: end;
-
 
 }
 
@@ -53,7 +51,7 @@ body {
 }
 
 button {
-    background-color: #8d99ae;
+    background-color: rgb(141, 153, 174);
     border: none;
     color: #edf2f4;
     font-size: 40px;
@@ -67,6 +65,10 @@ button {
 
 }
 
+button:hover {
+    background-color: rgb(141, 153,174, 0.75);
+}
+
 .operator {
     background-color: ;
 }
@@ -74,7 +76,10 @@ button {
 
 #clear {
     width: 166px;
-    background-color: #d90429;
+    background-color: rgb(217, 4, 41);
+}
+#clear:hover {
+    background-color: rgb(217,4,41,0.85);
 }
 
 .egg {
