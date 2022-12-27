@@ -64,10 +64,14 @@ function calculate () {
         display.textContent = 'ERROR';
         return;
     }
+
+    if (operator === '') {
+        return;
+    }
     
     firstNum = Number(firstNum);
     secondNum = Number(secondNum);
-    solution = (operate(operator, firstNum, secondNum));
+    solution = roundAnswer(operate(operator, firstNum, secondNum));
     firstNum = firstNum.toString();
     secondNum = secondNum.toString();
     display.textContent = solution;
@@ -85,6 +89,9 @@ function appendDecimal () {
 
 }
 
+function roundAnswer(number) {
+    return Math.round(number * 1000) / 1000
+}
 
 
 
